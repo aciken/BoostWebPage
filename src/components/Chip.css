@@ -1,0 +1,22 @@
+.chip {
+  --c: 255, 194, 92;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--r-chip);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: rgb(var(--c));
+  /* tint over a solid dark base so nothing shows through */
+  background:
+    linear-gradient(rgba(var(--c), 0.14), rgba(var(--c), 0.14)),
+    var(--card);
+  border: 1px solid rgba(var(--c), 0.22);
+}
+
+.chip--missed {
+  --c: 255, 115, 102;
+}

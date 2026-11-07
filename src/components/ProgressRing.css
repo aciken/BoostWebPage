@@ -1,0 +1,24 @@
+.ring {
+  position: relative;
+  flex: none;
+}
+
+.ring svg {
+  overflow: visible;
+}
+
+.ring__value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  color: var(--text-warm);
+  line-height: 1;
+}
+
+.ring__value small {
+  font-size: 0.6em;
+  color: var(--accent);
+  margin-left: 1px;
+}

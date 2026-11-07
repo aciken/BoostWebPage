@@ -1,0 +1,64 @@
+.glass {
+  --pool: 0.32;
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 50% 112%,
+      rgba(255, 194, 92, var(--pool)),
+      rgba(255, 122, 41, calc(var(--pool) * 0.31)) 40%,
+      transparent 70%
+    ),
+    linear-gradient(180deg, var(--card-top), var(--card-bottom));
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.35),
+    0 10px 36px rgba(0, 0, 0, 0.45);
+}
+
+.glass--warm {
+  background:
+    radial-gradient(
+      ellipse at 50% 112%,
+      rgba(255, 194, 92, var(--pool)),
+      rgba(255, 122, 41, calc(var(--pool) * 0.31)) 40%,
+      transparent 70%
+    ),
+    linear-gradient(180deg, #1f1c1a, #141211);
+}
+
+.glass--glow-soft {
+  --pool: 0.18;
+}
+
+.glass--glow-none {
+  --pool: 0;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.24),
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 194, 92, calc(0.15 + var(--pool)))
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass--sm {
+  border-radius: var(--r-sm);
+}
+
+.glass--lg {
+  border-radius: var(--r-lg);
+}

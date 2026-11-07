@@ -1,0 +1,108 @@
+.glow-btn {
+  --glow-a: 0.55;
+  --glow-b: 0.19;
+  --rim-warm: 0.45;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 50px;
+  min-width: 220px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #2b2b2b, #171717);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 17px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.35),
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 14px 40px -12px rgba(255, 122, 41, calc(var(--glow-b) * 1.4));
+  transition:
+    transform 0.45s var(--ease-spring),
+    filter 0.25s ease,
+    box-shadow 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Warm light pooling up from the bottom edge */
+.glow-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 75% 75% at 45% 115%,
+    rgba(255, 194, 92, var(--glow-a)),
+    rgba(255, 122, 41, var(--glow-b)) 45%,
+    transparent 75%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* 1px gradient rim, bright top, warm bottom */
+.glow-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.26),
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 194, 92, var(--rim-warm))
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glow-btn__label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.glow-btn:hover {
+  filter: brightness(1.06);
+  --glow-a: 0.68;
+  --glow-b: 0.26;
+}
+
+.glow-btn:active {
+  transform: scale(0.97);
+  transition-duration: 0.12s;
+}
+
+.glow-btn--secondary {
+  --glow-a: 0.2;
+  --glow-b: 0.07;
+  --rim-warm: 0.2;
+}
+
+.glow-btn--secondary:hover {
+  --glow-a: 0.3;
+  --glow-b: 0.1;
+}
+
+.glow-btn--sm {
+  height: 40px;
+  min-width: 0;
+  padding: 0 18px;
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .glow-btn--md {
+    height: 56px;
+  }
+}

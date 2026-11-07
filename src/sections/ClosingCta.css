@@ -1,0 +1,65 @@
+.closing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 640px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: calc(var(--section-gap) / 2);
+}
+
+.closing__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  z-index: -2;
+}
+
+.closing__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, var(--bg) 0%, rgba(9, 8, 8, 0.2) 22%, rgba(9, 8, 8, 0.35) 55%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(9, 8, 8, 0.75), rgba(9, 8, 8, 0.15) 70%);
+}
+
+.closing__inner {
+  padding-block: 120px 80px;
+}
+
+.closing__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 520px;
+}
+
+.closing__copy .caption {
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .closing {
+    min-height: 760px;
+    align-items: center;
+  }
+  .closing {
+    min-height: 820px;
+  }
+  .closing__bg {
+    left: auto;
+    right: 0;
+    width: 64%;
+    object-position: 50% 14%;
+  }
+  .closing__shade {
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(9, 8, 8, 0) 18%, rgba(9, 8, 8, 0) 72%, var(--bg) 100%),
+      linear-gradient(90deg, var(--bg) 0%, var(--bg) 36%, rgba(9, 8, 8, 0.6) 46%, rgba(9, 8, 8, 0) 62%, rgba(9, 8, 8, 0) 90%, rgba(9, 8, 8, 0.6) 100%);
+  }
+}

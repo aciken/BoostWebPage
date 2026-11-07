@@ -1,0 +1,182 @@
+.hero {
+  --rocket-w: clamp(120px, 30vw, 150px);
+  position: relative;
+  min-height: max(100svh, 720px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 104px;
+}
+
+/* ---------- Planet horizon ---------- */
+.hero__planet {
+  --pw: max(240vw, 900px);
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--pw) * -0.86);
+  width: var(--pw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.hero__planet img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+}
+
+/* Thin amber rim matched to the sphere inside the art */
+.hero__rim {
+  position: absolute;
+  left: 4.2%;
+  top: 3.9%;
+  width: 91.7%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow:
+    0 -1.5px 0 rgba(255, 194, 92, 0.55),
+    0 -6px 22px rgba(255, 122, 41, 0.35),
+    0 -30px 90px rgba(255, 122, 41, 0.14);
+  -webkit-mask-image: radial-gradient(ellipse 60% 18% at 50% 0%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 18% at 50% 0%, #000 30%, transparent 100%);
+}
+
+/* Warm pool of light on the horizon under the flame, and a fade into the page */
+.hero__pool {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 34% 30% at 50% 74%, rgba(255, 148, 31, 0.28), rgba(255, 87, 26, 0.08) 55%, transparent 80%),
+    linear-gradient(180deg, transparent 70%, var(--bg) 100%);
+}
+
+/* ---------- Copy ---------- */
+.hero__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.wordmark__main {
+  font-family: var(--font-text);
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1;
+  background: var(--wordmark-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(255, 194, 92, 0.35));
+}
+
+.wordmark__sub {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.45em;
+  margin-right: -0.45em; /* optically recentre tracked caps */
+  color: var(--accent);
+}
+
+.hero__headline {
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.hero__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ---------- Rocket stage ---------- */
+.hero__stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--rocket-w) * 2.1);
+  padding: 24px 0 calc(var(--rocket-w) * 0.9);
+}
+
+/* ---------- Entrance ---------- */
+.hero__in {
+  animation: hero-in 0.9s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.hero__stage .rocket {
+  animation:
+    hero-rocket-in 1.4s var(--ease-out) 0.3s both,
+    rocket-bob 3.2s ease-in-out 1.7s infinite;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes hero-rocket-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    --rocket-w: clamp(140px, 14vw, 190px);
+    padding-top: 128px;
+  }
+  .hero__planet {
+    --pw: max(130vw, 1300px);
+    bottom: calc(var(--pw) * -0.875);
+  }
+  .wordmark__main {
+    font-size: 96px;
+  }
+  .wordmark__sub {
+    font-size: 15px;
+  }
+  .hero__headline {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__in,
+  .hero__stage .rocket {
+    animation: none;
+  }
+}

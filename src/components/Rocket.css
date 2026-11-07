@@ -1,0 +1,133 @@
+.rocket {
+  --w: 220px;
+  --power: 1;
+  position: relative;
+  width: var(--w);
+  aspect-ratio: 2 / 3;
+}
+
+.rocket--bob {
+  animation: rocket-bob 3.2s ease-in-out infinite;
+}
+
+.rocket__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+@keyframes rocket-bob {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* ---------- Flame ---------- */
+/* Sits behind the nozzle (nozzle bottom ≈ 89% of the art's height). */
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: 84%;
+  width: calc(var(--w) * 0.26);
+  height: calc(var(--w) * 0.62 * var(--power));
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
+  pointer-events: none;
+  transition: height 0.8s var(--ease-out);
+}
+
+.flame__layer,
+.flame__glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
+  mix-blend-mode: screen;
+  /* teardrop pointing down */
+  border-radius: 50% 50% 50% 50% / 28% 28% 72% 72%;
+}
+
+.flame__glow {
+  width: 260%;
+  height: 120%;
+  top: -10%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255, 122, 41, 0.38), rgba(255, 87, 26, 0.12) 45%, transparent 70%);
+  filter: blur(10px);
+  animation: flame-glow 3.1s ease-in-out infinite;
+}
+
+.flame__layer--outer {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse 50% 60% at 50% 25%, var(--flame-outer), rgba(255, 87, 26, 0.5) 60%, transparent 100%);
+  filter: blur(7px);
+  opacity: 0.9;
+  animation: flicker-a 0.31s ease-in-out infinite alternate;
+}
+
+.flame__layer--middle {
+  width: 74%;
+  height: 78%;
+  background: radial-gradient(ellipse 50% 60% at 50% 22%, var(--flame-middle), rgba(255, 148, 31, 0.4) 65%, transparent 100%);
+  filter: blur(5px);
+  animation: flicker-b 0.23s ease-in-out infinite alternate;
+}
+
+.flame__layer--inner {
+  width: 52%;
+  height: 55%;
+  background: radial-gradient(ellipse 50% 60% at 50% 20%, var(--flame-inner), rgba(255, 209, 66, 0.35) 70%, transparent 100%);
+  filter: blur(3px);
+  animation: flicker-a 0.19s ease-in-out infinite alternate-reverse;
+}
+
+.flame__layer--core {
+  width: 32%;
+  height: 30%;
+  background: radial-gradient(ellipse 50% 60% at 50% 15%, var(--flame-core), rgba(255, 247, 204, 0.4) 70%, transparent 100%);
+  filter: blur(2px);
+  animation: flicker-b 0.37s ease-in-out infinite alternate;
+}
+
+/* 2–6 Hz, ±4% scale and opacity jitter */
+@keyframes flicker-a {
+  0% {
+    transform: translateX(-50%) scale(0.97, 0.96);
+    opacity: 0.88;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.03, 1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes flicker-b {
+  0% {
+    transform: translateX(-50%) scale(1.03, 0.97);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.97, 1.04);
+    opacity: 0.9;
+  }
+}
+
+@keyframes flame-glow {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,14 @@
+.starfield {
+  position: absolute;
+  inset: -24px 0 0 0;
+  width: 100%;
+  height: calc(100% + 24px);
+  pointer-events: none;
+  animation: star-drift 90s ease-in-out infinite alternate;
+}
+
+@keyframes star-drift {
+  to {
+    transform: translate3d(-10px, 24px, 0);
+  }
+}

@@ -1,0 +1,158 @@
+.score-card {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+.score-card__pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-card__arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(255, 194, 92, 0.08);
+  border: 1px solid rgba(255, 194, 92, 0.2);
+  transform: rotate(90deg);
+}
+
+.score-bar {
+  width: 100%;
+  max-width: 560px;
+}
+
+.score-bar__track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.score-bar__potential,
+.score-bar__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+}
+
+.score-bar__potential {
+  background: repeating-linear-gradient(90deg, rgba(255, 194, 92, 0.45) 0 4px, transparent 4px 9px);
+}
+
+.score-bar__fill {
+  background: var(--score-gradient);
+  box-shadow: 0 0 16px rgba(255, 194, 92, 0.45);
+}
+
+.score-bar__ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.score-card__line {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 34ch;
+}
+
+.score-card__line strong {
+  color: var(--text-warm);
+  font-weight: 600;
+}
+
+.score-sec__note {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .score-card {
+    padding: 56px 48px 44px;
+  }
+  .score-card__pair {
+    flex-direction: row;
+    gap: 40px;
+  }
+  .score-card__arrow {
+    transform: none;
+    margin-top: 24px;
+  }
+  .score-card__line {
+    font-size: 19px;
+    max-width: none;
+  }
+}
+
+/* ---------- Hidden "today" score ---------- */
+
+.score-locked {
+  position: relative;
+}
+
+/* Placeholder digits and unit, blurred together so no real number shows */
+.score-locked__row {
+  filter: blur(11px);
+  user-select: none;
+  pointer-events: none;
+  animation: locked-breathe 3.2s ease-in-out infinite;
+}
+
+.score-locked__digits {
+  filter: none;
+}
+
+@keyframes locked-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.score-locked__cta {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 12px);
+  transform: translate(-50%, -50%);
+  width: max-content;
+  z-index: 2;
+}
+
+.score-bar__fill--hidden {
+  width: 42%;
+  filter: blur(4px);
+  opacity: 0.45;
+}
+
+/* Phones: the button would cover the whole number, so let it overlap only the lower half */
+@media (max-width: 767px) {
+  .score-locked {
+    margin-bottom: 26px;
+  }
+  .score-locked__digits {
+    font-size: 88px;
+  }
+  .score-locked__cta {
+    top: auto;
+    bottom: -26px;
+    transform: translateX(-50%);
+  }
+}

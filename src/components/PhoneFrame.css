@@ -1,0 +1,83 @@
+.phone {
+  --pw: 280px;
+  position: relative;
+  margin: 0;
+  width: var(--pw);
+  max-width: 100%;
+  aspect-ratio: 9 / 19.5;
+}
+
+.phone__glow {
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: 150%;
+  height: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 70%, rgba(255, 194, 92, 0.28), rgba(255, 122, 41, 0.1) 40%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.phone__body {
+  position: relative;
+  height: 100%;
+  padding: 3.4%;
+  border-radius: calc(var(--pw) * 0.16);
+  background: linear-gradient(180deg, #2a2827, #121110 60%, #1a1614);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 1px 0 rgba(255, 194, 92, 0.35) inset,
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.phone__screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--pw) * 0.13);
+  background: #050505;
+}
+
+.phone__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.phone__island {
+  position: absolute;
+  top: 2.2%;
+  left: 50%;
+  width: 32%;
+  height: 4.2%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #000;
+}
+
+.phone__placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  background:
+    radial-gradient(ellipse at 50% 110%, rgba(255, 194, 92, 0.14), transparent 60%),
+    linear-gradient(180deg, #121110, #070707);
+}
+
+.phone__placeholder code {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
